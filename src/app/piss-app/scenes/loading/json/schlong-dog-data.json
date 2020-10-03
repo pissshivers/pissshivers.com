@@ -1,0 +1,39 @@
+{"frames": {
+
+"schlong-dog-pissing_01.png":
+{
+	"frame": {"x":1,"y":467,"w":496,"h":728},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":496,"h":728},
+	"sourceSize": {"w":496,"h":728}
+},
+"schlong-dog-pissing_02.png":
+{
+	"frame": {"x":1,"y":965,"w":496,"h":728},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":496,"h":728},
+	"sourceSize": {"w":496,"h":728}
+},
+"schlong-dog.png":
+{
+	"frame": {"x":1,"y":1,"w":464,"h":886},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":464,"h":886},
+	"sourceSize": {"w":464,"h":886}
+}},
+"animations": {
+	"schlong-dog-pissing": ["schlong-dog-pissing_01.png","schlong-dog-pissing_02.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "/images/schlong-dog-sheet.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":2048},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:a238ec5c5995a2b8ffdf700d6f66cd5d:83ee49616d0f2b014fc69ba9517c8072:eebc58c10a3606f0e8fdd32e8aa07de4$"
+}
+}
