@@ -71,11 +71,9 @@ export class SceneManager extends PIXI.utils.EventEmitter {
     
     
     load(scene: any){
-        console.log(this.loading.parent)
         if (!this.loading.parent){
             this.piss.addChild(this.loading)
         }
-        console.log(this.piss.stage.children)
         if (this.current){
             this.current.destroy();
         }
