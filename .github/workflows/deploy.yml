@@ -29,20 +29,13 @@ jobs:
       - name: Build prod
         run: npm run build
       
-      - name: SCP Upload
-        # You may pin to the exact commit or the version.
-        # uses: betanzos/scp-upload@4afbc824f4b0940d2b1ae862590033424385e3ab
-        uses: betanzos/scp-upload@v1
+      - name: deploy-via-scp
+        uses: horochx/deploy-via-scp@v1.0.1
         with:
-          # Source local file path
-          source: dist/
-          # Remote host
-          host: pissshivers.com
-          # Remote host SSH port
-          port: 22
-          # Remote host username
-          username: pissuser
-          # SSH private key
+          local: dist/* # eg: dist/*
+          remote: ${{ secrets.REMOTE_DIR }} # eg: /home/github-action/www
+          host: ${{ secrets.HOST }} # eg: example.com
+          port: ${{ secrets.PORT }} # eg: 22
+          user: ${{ secrets.REMOTE_USER }} # eg: github-action
           key: ${{ secrets.SSH_KEY }}
-          # Remote directory to copy the file
-          remote_dir: /apps/pissshivers.com/html/
+
