@@ -8,4 +8,6 @@ const rootReducer = combineReducers({
     scene: sceneReducer
 });
 
+export type RootState = ReturnType<typeof rootReducer>
+
 export default rootReducer;

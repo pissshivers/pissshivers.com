@@ -24,8 +24,10 @@ export class Playlist extends PIXI.utils.EventEmitter {
         this.audio.addEventListener('loadstart', () => {
             this.emit('loadstart', this.trackNum, this.trackTitle)
         })
+    }
 
-        this.load(0);
+    init(trackNum: number){
+        this.load(trackNum);
     }
 
     load(trackNum: number){
@@ -41,11 +43,12 @@ export class Playlist extends PIXI.utils.EventEmitter {
     playWhenPlayable(){
         if (this.audio.canPlayType('audio/mp3') === "probably"){;
             this.audio.removeEventListener('canplay', this.playWhenPlayable.bind(this));
-            this.play();
+            this.audio.play();
         }
     }
 
     play(){
+        this.emit("play");
         this.audio.play();
 
     }

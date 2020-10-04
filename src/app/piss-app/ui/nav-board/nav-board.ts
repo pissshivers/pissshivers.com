@@ -6,6 +6,7 @@ import { Beer } from './beer';
 import { PissOMeter } from './piss-o-meter';
 import { poundBeer } from '../../../store/piss-o-meter/actions';
 import { loadScene } from '../../../store/scene/actions';
+import { Toilet, Backyard } from '../../scenes';
 
 
 export class NavBoard extends SheetSprite {
@@ -46,7 +47,7 @@ export class NavBoard extends SheetSprite {
         toilet.interactive = true;
         toilet.buttonMode = true;
         toilet.on('pointerdown', () => {
-            store.dispatch(loadScene('Toilet'))
+            store.dispatch(loadScene(Toilet.name))
         });
         this.addChild(toilet);
 
@@ -56,7 +57,7 @@ export class NavBoard extends SheetSprite {
         backyard.interactive = true;
         backyard.buttonMode = true;
         backyard.on('pointerdown', () => {
-            store.dispatch(loadScene('Backyard'))
+            store.dispatch(loadScene(Backyard.name))
         });
         this.addChild(backyard);
 

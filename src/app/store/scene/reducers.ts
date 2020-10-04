@@ -8,10 +8,15 @@ const sceneReducer = createReducer({
     track: TRACK_NUM
 } as SceneStateType)
     .handleAction(loadScene, (state, action) => {
-        state.name = action.payload;
-        return state;
+        let newState = { ...state }
+        newState.name = action.payload;
+        return newState;
     })
-    .handleAction(changeTrack, (state, action) => state);
+    .handleAction(changeTrack, (state, action) => {
+        let newState = {...state};
+        newState.track = action.payload;
+        return newState;
+    });
 
 export default sceneReducer;
 export type SceneState = ReturnType<typeof sceneReducer>;

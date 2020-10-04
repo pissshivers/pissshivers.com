@@ -1,9 +1,9 @@
 {
-  "name": "pixi-sound-webpack-example",
-  "version": "1.0.0",
+  "name": "pissshivers.com",
+  "version": "1.0.1",
   "private": true,
   "description": "",
-  "main": "index.js",
+  "main": "index.tsx",
   "scripts": {
     "start": "webpack-dev-server --config webpack.dev.js",
     "stats": "webpack --config webpack.dev.js --profile --json > combined-stats.json",
@@ -12,7 +12,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "GPL3",
   "devDependencies": {
     "@pixi/filter-drop-shadow": "^3.1.1",
     "@pixi/filter-glitch": "^3.1.1",
@@ -37,6 +37,7 @@
     "sass-loader": "^9.0.3",
     "source-map-loader": "^1.0.1",
     "style-loader": "^1.2.1",
+    "terser-webpack-plugin": "^4.2.2",
     "ts-loader": "^6.0.1",
     "typesafe-actions": "^5.1.0",
     "typescript": "^3.4.5",

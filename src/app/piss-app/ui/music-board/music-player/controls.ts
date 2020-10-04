@@ -2,6 +2,8 @@ import * as PIXI from 'pixi.js';
 
 import { SpriteButton } from '../../../core/UI';
 import { Playlist } from '../../../core/Playlist';
+import { store } from '../../../../store';
+import { changeTrack } from '../../../../store/scene/actions';
 
 export class Controls extends PIXI.Container {
 
@@ -52,6 +54,10 @@ export class Controls extends PIXI.Container {
         this.playlist.audio.addEventListener('pause', () => {
             this.play.enable();
             this.pause.disable();
+        })
+
+        this.playlist.on('loadstart', (track: number) => {
+            store.dispatch(changeTrack(track))
         })
     }
 

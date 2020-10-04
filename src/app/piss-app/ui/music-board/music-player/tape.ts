@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js';
+import { getSceneState, store } from '../../../../store';
 import { Playlist } from '../../../core/Playlist/Playlist';
 import { SheetSprite } from '../../../core/UI/SheetSprite';
 
@@ -48,6 +49,9 @@ export class Tape extends SheetSprite {
         this.trackName.y = this.height - 90;
         this.addChild(this.trackName);
 
+        let initTrack = getSceneState(store.getState().scene).track;
+        this.playlist.init(initTrack)
+
         this.playlist.on('loadstart', (num: number, title: string) => {
             this.t = 0;
             trackNameRender.text = (num+1)+'.\t'+title;
@@ -55,7 +59,7 @@ export class Tape extends SheetSprite {
             this.trackName.text = this.trackDisplay.title;
         })
 
-        this.playlist.audio.addEventListener('play', () => {
+        this.playlist.on('play', () => {
             PIXI.Ticker.shared.add(this.tick, this);
         })
 

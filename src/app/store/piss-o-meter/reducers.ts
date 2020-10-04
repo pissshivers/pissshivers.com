@@ -15,18 +15,20 @@ const pissOMeterReducer = createReducer({
     } as PissOMeter )
     .handleAction(setDefaults, (state, action) => Object.assign(state, action.payload))
     .handleAction(poundBeer, (state, _) => {
-        if (state.level > state.max){
-            state.level -= state.steps;
+        let newState = { ...state };
+        if (newState.level > newState.max){
+            newState.level -= newState.steps;
         }
-        if (!state.fuckedUp && state.level == state.max){
-            state.fuckedUp = true;
+        if (!newState.fuckedUp && newState.level == newState.max){
+            newState.fuckedUp = true;
         }
-        return state;
+        return newState;
     })
     .handleAction(drainPiss, (state, _) => {
-        state.level = state.min
-        state.fuckedUp = false;
-        return state;
+        let newState = { ...state };
+        newState.level = newState.min
+        newState.fuckedUp = false;
+        return newState;
     });
 
     export default pissOMeterReducer;
