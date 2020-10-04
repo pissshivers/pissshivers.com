@@ -43,6 +43,6 @@ jobs:
           # Remote host username
           username: pissuser
           # SSH private key
-          key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDgDxBuZ1KOVPbvdlNdoLtJfhTpYIki0ocHGwvx2c+g6sjY6oDzrtzvDjibJjnKvO0LvLlhwC2Kf38QmO9IsG0AF2xcZ62sb3c+Mn67+D3V0lGFnl/pkq36TkeZcHIRyXdRuDqOiigTTv3mRm2Jmc7zUGWxasFemeulOu2tnBrPKkaH1QQ6pp4Q75H2WqzjmteQ2z2sVWga0xA748pltlMTXpDwv2OmBa1WSUA7cpFJDBF05By6zZf8dMNF+AulY9O6FS9+Mhx2gzBhusqUYGud+BVUqaUHa3qBTTyPmGHIdsk/rlzzuHGC1aLvpw9YmWDtFm89LLoOgOndk8sg+tCUXo9zzt0xxPdTedpJx6WUdpwbQfJxnJ6+5pzGKfGA5tLutXCWGHv9ljF5NYa2Sf5W07m5Lv+3rFItoeE6D3euRnpWzN42m9+RkwUoSf4v+VccFI/6OdMSzN7DoJDGRWHaek+Gf/fzQuiUuEQ4o8kalCPZd3HWVDqxqvl14oqhwaPhPIwK8EIu6VPkbwy1+b7wZGuB4PLeUexT/uDHOHkZNr4DHQtFA0AWrCJlSZv+y1Z0QHjOy7jChyURu/9XOezSQNwl4kaD6/CaebCNzctyfmppc0VUifQBB0FYTP2oq2lY73M8y5FL+P5ivjONbfUyMCGdWJymps+bww2tlG1ZLw== pissuser@pissshivers.com
+          key: ${{ secrets.SSH_KEY }}
           # Remote directory to copy the file
           remote_dir: /apps/pissshivers.com/html/
