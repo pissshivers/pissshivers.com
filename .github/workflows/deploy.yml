@@ -39,7 +39,7 @@ jobs:
           # Remote host
           host: pissshivers.com
           # Remote host SSH port
-          port: # optional, default is 22
+          port: 22
           # Remote host username
           username: pissuser
           # SSH private key
