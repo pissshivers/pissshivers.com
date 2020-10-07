@@ -1,7 +1,6 @@
 import * as PIXI from 'pixi.js';
 import {KawaseBlurFilter} from '@pixi/filter-kawase-blur';
 import {RadialBlurFilter} from '@pixi/filter-radial-blur';
-// import * as Penner from 'penner';
 
 import { Effect } from '../core/Effects';
 import {store, getPissState} from '../../store';
@@ -41,7 +40,7 @@ export class FuckedUp extends Effect {
         store.subscribe(() => {
             const state = getPissState(store.getState().pissOMeter);
             this.howFuckedUp =  Math.max(1 - state.level/state.min, 0);
-
+   
             if (!EffectsManager.isEnabled(FuckedUp) && this.howFuckedUp > 0){
                 EffectsManager.enable(FuckedUp);
             }
@@ -56,10 +55,8 @@ export class FuckedUp extends Effect {
             this.kawasBlur = new KawaseBlurFilter(0,0);
             this.kawasBlur.pixelSize = this.maxKawas.pixelSize;
             this.kawasBlur.quality = this.maxKawas.quality;
-            this.kawasBlur.blendMode = PIXI.BLEND_MODES.MULTIPLY;
             
             this.radialBlur = new RadialBlurFilter(0, [this.container.width/2, this.container.height/2], 5, this.container.width * 1.5);
-            // this.radialBlur.blendMode = PIXI.BLEND_MODES.SCREEN;
 
             this.filters = [this.radialBlur, this.kawasBlur];
             resolve();

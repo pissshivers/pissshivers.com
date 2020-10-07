@@ -7,10 +7,7 @@ import './main.scss';
 import App from './app/';
 import { PersistGate } from 'redux-persist/integration/react';
 
-// const store = Store().store;
-// const persistor = Store().persistor;
-
-// persistor.purge();
+persistor.purge();
 const Root = () => (
     <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>

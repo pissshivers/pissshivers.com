@@ -30,7 +30,7 @@ export class PissPool extends Pool{
             let curr = getPissState(store.getState().pissOMeter);
             if (!EffectsManager.isEnabled(PissPool)){
                 if (curr.fuckedUp){
-                    EffectsManager.enable(PissPool)
+                    EffectsManager.enable(PissPool);
                     this.fill(PoolUpdate.FILL, {duration: curr.drainDurration});
                 }
             }
@@ -115,16 +115,8 @@ export class PissPool extends Pool{
 
     disable(){
         // this.pool.renderable = false;
-        super.disable();
-
-        
+        super.disable();        
         this.pool.destroy({children: true});
-
-        // this.piss = undefined;
-        // this.dispWrapper = undefined;
-        // this.pool = undefined;
-        // this.dispWrapper = undefined;
-        // this.dispSprite = undefined;
     }
 
     tick(time: number){

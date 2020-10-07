@@ -30,10 +30,11 @@ export class Effect extends PIXI.utils.EventEmitter implements IEffect {
             this.enabled = true;
             let container = this.appEffect ? this.container.stage : this.container;
             const filters = container.filters ? container.filters : [];
+
             this.filterIndexs = this.filters.map((f, i) => {
                 return i + filters.length;
             });
-            container.filters = this.filters.concat(filters);
+            container.filters = filters.concat(this.filters);
             
             this.updateContainer(container);
             if ('tick' in this){
@@ -47,8 +48,8 @@ export class Effect extends PIXI.utils.EventEmitter implements IEffect {
             this.enabled = false;
             let container = this.appEffect? this.container.stage : this.container;
             let filters = container.filters;
-            filters.splice(this.filterIndexs[0], this.filterIndexs.length);
 
+            filters.splice(this.filterIndexs[0], this.filterIndexs.length);
             container.filters = filters;
             
             this.updateContainer(container);
