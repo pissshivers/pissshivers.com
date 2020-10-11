@@ -4,6 +4,7 @@ import {DropShadowFilter} from '@pixi/filter-drop-shadow';
 
 import { PeeSettings } from './pee-settings';
 import { ResourceMap } from '../../core';
+import { getPissState, store } from '../../../store';
 
 export class PeeStream {
     elapsed: number;
@@ -11,19 +12,30 @@ export class PeeStream {
     parent: PIXI.Container;
     emitter: Particles.Emitter
     pos: PIXI.Point;
+    settings: any;
+    unsubscribe: any;
 
     constructor(parent: PIXI.Container) {
         this.parent = parent;
         this.parent.addChild(this.container);
 
         this.container.filters = [new DropShadowFilter({distance: 18, rotation: 18})];
+
+        this.settings = {...PeeSettings};
+
+        this.unsubscribe = store.subscribe(() => {
+            let curr = getPissState(store.getState().pissOMeter);
+            this.emitter.emitterLifetime = curr.drainDurration/1000;
+        });
     }
 
     init(res: ResourceMap): void {
+        let state = getPissState(store.getState().pissOMeter);
+        this.settings.emitterLifetime = state.drainDurration/1000;
         this.emitter = new Particles.Emitter(
             this.container,
             res.pissParticle.texture,
-            PeeSettings
+            this.settings
         );
         this.pos = this.emitter.spawnPos;
     }
@@ -52,5 +64,13 @@ export class PeeStream {
         let y = this.pos.y;
  
         this.emitter.updateSpawnPos(x, y);
+    }
+
+    destroy(): void {
+        this.unsubscribe();
+        this.emitter.destroy();
+        this.container.destroy();
+
+        this.settings = undefined;
     }
 }
