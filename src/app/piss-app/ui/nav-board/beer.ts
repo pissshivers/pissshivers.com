@@ -13,8 +13,6 @@ export class Beer extends SpriteButton {
     constructor(sheet: PIXI.Spritesheet){
         super('beer.png', sheet);
 
-        this.on('pointerdown', this.onClick);
-
         this.unsubscribe = store.subscribe(() => {
             let state = store.getState().pissOMeter;
             if (state.fuckedUp != this.fuckedUp){
@@ -31,7 +29,6 @@ export class Beer extends SpriteButton {
     }
     
     onClick(){
-        console.log('clicked   ')
         store.dispatch(poundBeer());
     }
 
