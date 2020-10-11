@@ -48,25 +48,22 @@ export class PeeStream {
     start(): void {
         this.elapsed = Date.now();
         this.emitter.emit = true;
-        this.update();
+        PIXI.Ticker.shared.add(this.update, this);
     }
 
     update(): void {
-        requestAnimationFrame(() => {
-            this.update();
-        });
-        
         let now = Date.now();
         this.emitter.update((now - this.elapsed) * 0.001);
         this.elapsed = now;
 
         let x = this.pos.x + (Math.sin(this.pos.x/(Math.floor(Math.random() * 20) + 1 )) * 10);
         let y = this.pos.y;
- 
+
         this.emitter.updateSpawnPos(x, y);
     }
 
     destroy(): void {
+        PIXI.Ticker.shared.remove(this.update, this);
         this.unsubscribe();
         this.emitter.destroy();
         this.container.destroy();
