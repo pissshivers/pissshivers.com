@@ -4,7 +4,6 @@ import { store } from '../../../store';
 import { SheetSprite, SpriteButton } from '../../core/UI';
 import { Beer } from './beer';
 import { PissOMeter } from './piss-o-meter';
-import { poundBeer } from '../../../store/piss-o-meter/actions';
 import { loadScene } from '../../../store/scene/actions';
 import { Toilet, Backyard } from '../../scenes';
 
@@ -21,9 +20,6 @@ export class NavBoard extends SheetSprite {
         this.addChild(this.pissOMeter);
 
         this.beer = new Beer(sheet);
-        this.beer.on('pointerdown', () => {
-            store.dispatch(poundBeer());
-        })
         this.addChild(this.beer);
 
         const header = new PIXI.BitmapText("Baby Haus Activies:", {fontName: 'Permanent Marker', fontSize: 40})
