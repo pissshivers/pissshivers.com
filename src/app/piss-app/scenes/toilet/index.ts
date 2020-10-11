@@ -23,7 +23,7 @@ export class Toilet extends Scene {
         this.unsubscribe = store.subscribe(() => {
             let curr = getPissState(store.getState().pissOMeter);
             this.handleState(curr);
-        })
+        });
         
     }
 
@@ -83,6 +83,7 @@ export class Toilet extends Scene {
 
     destroy(){
         super.destroy();
+        this.peeStream.destroy();
         this.unsubscribe();
     }
 

@@ -18,6 +18,7 @@ const pissOMeterReducer = createReducer({
         let newState = { ...state };
         if (newState.level > newState.max){
             newState.level -= newState.steps;
+            newState.drainDurration = (1 - (newState.level/newState.min)) * PISS_DRAIN_DURATION;
         }
         if (!newState.fuckedUp && newState.level == newState.max){
             newState.fuckedUp = true;
