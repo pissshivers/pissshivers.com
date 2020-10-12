@@ -52,6 +52,7 @@
     "@inlet/react-pixi": "^5.0.4",
     "@pixi-essentials/cull": "^1.0.8",
     "@pixi/filter-adjustment": "^3.1.1",
+    "@pixi/filter-glow": "^3.1.1",
     "@pixi/filter-radial-blur": "^3.1.1",
     "@types/react-redux": "^7.1.9",
     "gstats": "^0.1.0",
