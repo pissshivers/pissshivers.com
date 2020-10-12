@@ -1,7 +1,7 @@
 import * as PIXI from 'pixi.js';
 
 import { store } from '../../../store';
-import { SheetSprite, SpriteButton } from '../../core/UI';
+import { SheetSprite, SpriteButton, Text, TextButton } from '../../core/UI';
 import { Beer } from './beer';
 import { PissOMeter } from './piss-o-meter';
 import { loadScene } from '../../../store/scene/actions';
@@ -22,36 +22,32 @@ export class NavBoard extends SheetSprite {
         this.beer = new Beer(sheet);
         this.addChild(this.beer);
 
-        const header = new PIXI.BitmapText("Baby Haus Activies:", {fontName: 'Permanent Marker', fontSize: 40})
+        const header = new Text("Baby Haus Activies:", {fontSize: 40})
         header.x = this.pissOMeter.x + 120;
         header.y = 180;
         this.addChild(header)
         
-        const list = new PIXI.BitmapText("1. Play a Piss Shivers track\r\n2. Drink some Beer (don't FUCK-UP and drink too much)\r\n3. Use the TOILET to drain the Piss-O-Meter\r\n4. Listen to Piss Shivers on Spotify or Apply Music", {fontName: 'Permanent Marker', maxWidth: 400, fontSize: 25})
+        const list = new Text("1. Play a Piss Shivers track\r\n2. Drink some Beer (don't FUCK-UP and drink too much)\r\n3. Use the TOILET to drain the Piss-O-Meter\r\n4. Listen to Piss Shivers on Spotify or Apply Music", {maxWidth: 400, fontSize: 25})
         list.x = header.x+30;
         list.y = header.y + 70;
         this.addChild(list);
 
-        const goto = new PIXI.BitmapText("GO TO:", {fontName: 'Permanent Marker', fontSize: 40});
+        const goto = new Text("GO TO:");
         goto.x = list.x;
         goto.y = list.y + list.height + 70;
         this.addChild(goto)
 
-        const toilet = new PIXI.BitmapText("TOILET ->", {fontName: 'Permanent Marker', fontSize: 40});
+        const toilet = new TextButton("TOILET ->");
         toilet.x = goto.x + 100;
         toilet.y = goto.y + goto.height + 40;
-        toilet.interactive = true;
-        toilet.buttonMode = true;
         toilet.on('pointerdown', () => {
             store.dispatch(loadScene(Toilet.name))
         });
         this.addChild(toilet);
 
-        const backyard = new PIXI.BitmapText("<- BACKYARD", {fontName: 'Permanent Marker', fontSize: 40});
+        const backyard = new TextButton("<- BACKYARD", {fontName: 'Permanent Marker', fontSize: 40});
         backyard.x = goto.x + 40;
         backyard.y = toilet.y + toilet.height + 40;
-        backyard.interactive = true;
-        backyard.buttonMode = true;
         backyard.on('pointerdown', () => {
             store.dispatch(loadScene(Backyard.name))
         });
