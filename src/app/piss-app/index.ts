@@ -2,10 +2,11 @@ import * as PIXI from 'pixi.js';
 import { Cull } from '@pixi-essentials/cull';
 import 'stats.js';
 import * as GStats from 'gstats';
+// import * as dat from 'dat.gui';
 
 import { SceneManager } from './core/Scene/SceneManager';
 import { EffectsManager } from './core/Effects/EffectsManager';
-import { Backyard, Toilet } from './scenes/index';
+import { Backyard, Toilet, Graveyard } from './scenes/index';
 import { Nav } from './ui';
 import { PissPool } from './effects/piss-pool';
 import { FuckedUp } from './effects/fuckedup';
@@ -13,6 +14,12 @@ import { Loading } from './scenes';
 import { Assets } from './assets';
 
 window.PIXI = PIXI;
+
+// declare global {
+//     var DebugGUI: dat.GUI
+// };
+
+// window.DebugGUI = new dat.GUI();
 
 class PissApp extends PIXI.Application {
   
@@ -30,7 +37,7 @@ class PissApp extends PIXI.Application {
             backgroundColor: 0xFFFFFF
         });
 
-
+        
         const resize = window.addEventListener('resize', () => {
             PIXI.Ticker.shared.stop();
             setTimeout(() => {
@@ -65,7 +72,7 @@ class PissApp extends PIXI.Application {
     }
 
     init(){
-        SceneManager.register(Backyard, Toilet)
+        SceneManager.register(Backyard, Toilet, Graveyard)
         SceneManager.init(this);
         // this.scene = new SceneManager(this);
         SceneManager.instance.loadingScene = new Loading(this);

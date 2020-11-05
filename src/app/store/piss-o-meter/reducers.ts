@@ -25,10 +25,11 @@ const pissOMeterReducer = createReducer({
         }
         return newState;
     })
-    .handleAction(drainPiss, (state, _) => {
-        let newState = { ...state };
-        newState.level = newState.min
-        newState.fuckedUp = false;
+    .handleAction(drainPiss, (state, action) => {
+        let newState = Object.assign(state, action.payload);
+        if (newState.fuckedUp){
+            newState.fuckedUp = newState.level == newState.max;
+        }
         return newState;
     });
 

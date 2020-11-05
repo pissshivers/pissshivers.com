@@ -1,0 +1,55 @@
+{"frames": {
+
+"mg-ghost-1.png":
+{
+	"frame": {"x":396,"y":858,"w":171,"h":154},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":1710,"y":623,"w":171,"h":154},
+	"sourceSize": {"w":171,"h":154}
+},
+"mg-ghost-2.png":
+{
+	"frame": {"x":396,"y":684,"w":154,"h":172},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":906,"y":523,"w":154,"h":172},
+	"sourceSize": {"w":154,"h":172}
+},
+"mg-ghost-3.png":
+{
+	"frame": {"x":1,"y":1,"w":422,"h":681},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":721,"y":101,"w":422,"h":681},
+	"sourceSize": {"w":422,"h":681}
+},
+"mg-ghost-4.png":
+{
+	"frame": {"x":425,"y":1,"w":381,"h":565},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":1255,"y":28,"w":381,"h":565},
+	"sourceSize": {"w":381,"h":565}
+},
+"mg-ghost-5.png":
+{
+	"frame": {"x":1,"y":684,"w":321,"h":393},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":1514,"y":270,"w":321,"h":393},
+	"sourceSize": {"w":321,"h":393}
+}},
+"animations": {
+	"mg-ghost": ["mg-ghost-1.png","mg-ghost-2.png","mg-ghost-3.png","mg-ghost-4.png","mg-ghost-5.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "/images/mid-ground-ghosts.png",
+	"format": "RGBA8888",
+	"size": {"w":1024,"h":1024},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:f945e613e833cdac57f0f2e79bb09806:f34affa101820de8685d566636424fcb:577960f07c39255ebcabd357fc9500c5$"
+}
+}

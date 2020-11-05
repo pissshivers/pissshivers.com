@@ -1,0 +1,31 @@
+{"frames": {
+
+"fg-ghost-1.png":
+{
+	"frame": {"x":1,"y":1,"w":902,"h":1692},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":1978,"y":108,"w":902,"h":1692},
+	"sourceSize": {"w":902,"h":1692}
+},
+"fg-ghost-2.png":
+{
+	"frame": {"x":905,"y":1,"w":394,"h":763},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":1847,"y":354,"w":394,"h":763},
+	"sourceSize": {"w":394,"h":763}
+}},
+"animations": {
+	"fg-ghost": ["fg-ghost-1.png","fg-ghost-2.png"]
+},
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "/images/fore-ground-ghosts.png",
+	"format": "RGBA8888",
+	"size": {"w":1694,"h":1694},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:aeeb98b61bca729835371f922c8eb166:cb0dfe09b068f39e876540d00876f8f3:2dcd6e7ca6d6c25e13e6bd36b356f4e3$"
+}
+}

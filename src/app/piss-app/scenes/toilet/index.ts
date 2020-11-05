@@ -53,7 +53,7 @@ export class Toilet extends Scene {
     handleState(state: any){
         if (state.level != state.min){
             this.on('pointerdown', () => {
-                this.onClick()
+                this.onClick(state)
             })
         }
         else {
@@ -61,9 +61,9 @@ export class Toilet extends Scene {
         }
     }
     
-    onClick(){
+    onClick(state: any){
         this.peeStream.start();
-        store.dispatch(drainPiss());
+        store.dispatch(drainPiss({level: state.min}));
     }
 
     resize(){
@@ -76,7 +76,6 @@ export class Toilet extends Scene {
         this.peeStream.container.scale.set(h/this.texture.height)
         this.peeStream.container.x = w * 0.7;
         this.peeStream.container.y = h;
-
 
         this.bg.resize(w, h);
     }

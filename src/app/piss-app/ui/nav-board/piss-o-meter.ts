@@ -64,10 +64,13 @@ export class PissOMeter extends SheetSprite {
         this.unsubscribe = store.subscribe(() => {
             let prev = this.pissPool.level;
             let curr = getPissState(store.getState().pissOMeter);
-
+            
             if (prev != curr.level){
                 if (prev > curr.level){
                     this.fill();
+                }
+                else if (curr.level != curr.min){
+                    this.drainStep();
                 }
                 else {
                     this.drain({duration: curr.drainDurration});
@@ -79,6 +82,10 @@ export class PissOMeter extends SheetSprite {
 
     fill(){
         this.pissPool.fill();
+    }
+
+    drainStep(){
+        this.pissPool.drain();
     }
 
     drain(opts: object = {}){
