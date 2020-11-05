@@ -56,6 +56,10 @@ export class Controls extends PIXI.Container {
             this.pause.disable();
         })
 
+        this.playlist.audio.addEventListener('ended', () => {
+            this.playlist.next();
+        })
+
         this.playlist.on('loadstart', (track: number) => {
             store.dispatch(changeTrack(track))
         })

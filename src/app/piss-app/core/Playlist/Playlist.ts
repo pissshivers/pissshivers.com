@@ -10,6 +10,7 @@ export class Playlist extends PIXI.utils.EventEmitter {
     trackTitle: string;
     duration: number;
     audio: HTMLAudioElement;
+    playing: boolean;
 
     constructor(trackList: ITrack[]){
         super();
@@ -54,6 +55,7 @@ export class Playlist extends PIXI.utils.EventEmitter {
     }
 
     pause(){
+        this.emit('pause');
         this.audio.pause();
     }
 
