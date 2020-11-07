@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 import * as Particles from 'pixi-particles';
 import {DropShadowFilter} from '@pixi/filter-drop-shadow';
+import PIXISound from 'pixi-sound';
 
 import { PeeSettings } from './pee-settings';
 import { ResourceMap } from '../../core';
@@ -14,6 +15,8 @@ export class PeeStream {
     pos: PIXI.Point;
     settings: any;
     unsubscribe: any;
+    audioStart: number;
+    audioDuration: number;
 
     constructor(parent: PIXI.Container) {
         this.parent = parent;
@@ -38,6 +41,7 @@ export class PeeStream {
             this.settings
         );
         this.pos = this.emitter.spawnPos;
+        this.audioDuration = PIXISound.find('pissAudio').duration;
     }
 
     updateSpawnPos(x: number, y: number): void{
@@ -48,6 +52,11 @@ export class PeeStream {
     start(): void {
         this.elapsed = Date.now();
         this.emitter.emit = true;
+        console.log(`${this.audioDuration} - ${this.emitter.emitterLifetime}`)
+        PIXISound.play('pissAudio', {
+            start: Math.max(0, this.audioDuration - this.emitter.emitterLifetime),
+            volume: 0.5
+        })
         PIXI.Ticker.shared.add(this.update, this);
     }
 
@@ -55,7 +64,6 @@ export class PeeStream {
         let now = Date.now();
         this.emitter.update((now - this.elapsed) * 0.001);
         this.elapsed = now;
-
         let x = this.pos.x + (Math.sin(this.pos.x/(Math.floor(Math.random() * 20) + 1 )) * 10);
         let y = this.pos.y;
 

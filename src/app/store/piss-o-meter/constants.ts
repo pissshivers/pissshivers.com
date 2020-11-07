@@ -3,7 +3,7 @@ export const PISS_MIN: number = 0;
 export const PISS_BASE: number = 69;
 export const PISS_LEVEL: number = 3;
 export const PISS_IS_DRAINING: boolean = false;
-export const PISS_DRAIN_DURATION: number = 5300;
+export const PISS_DRAIN_DURATION: number = 6000;
 export const PISS_STEPS: number = (PISS_BASE/PISS_MAX);
 
 
