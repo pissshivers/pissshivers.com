@@ -4,9 +4,9 @@ import { store } from '../../../store';
 import { SheetSprite, SpriteButton, Text, TextButton } from '../../core/UI';
 import { Beer } from './beer';
 import { PissOMeter } from './piss-o-meter';
-import { loadScene } from '../../../store/scene/actions';
+import { loadScene, toggleHelpMenu } from '../../../store/scene/actions';
 import { Toilet, Backyard } from '../../scenes';
-import { TapedBoard } from '../taped-board';
+import { TapedBoard } from '../components/taped-board';
 
 
 export class NavBoard extends TapedBoard {
@@ -15,6 +15,7 @@ export class NavBoard extends TapedBoard {
     beer: Beer;
 
     constructor(sheet: PIXI.Spritesheet, board: string, tape: string){
+        
         super(sheet, board, tape);
         this.pissOMeter = new PissOMeter('piss-o-meter.png', sheet);
         this.pissOMeter.init();
@@ -23,36 +24,45 @@ export class NavBoard extends TapedBoard {
         this.beer = new Beer(sheet);
         this.board.addChild(this.beer);
 
-        const header = new Text("Baby Haus Activies:", {fontSize: 40})
-        header.x = this.pissOMeter.x + 120;
-        header.y = 80;
-        this.board.addChild(header)
-        
-        const list = new Text("1. Play a Piss Shivers track\r\n2. Drink some Beer (don't FUCK-UP and drink too much)\r\n3. Use the TOILET to drain the Piss-O-Meter\r\n4. Listen to Piss Shivers on Spotify or Apply Music", {maxWidth: 400, fontSize: 25})
-        list.x = header.x+30;
-        list.y = header.y + 70;
-        this.board.addChild(list);
+        const pissLabel = new SheetSprite('piss-label.png', sheet);
+        this.board.addChild(pissLabel);
 
-        const goto = new Text("GO TO:");
-        goto.x = list.x;
-        goto.y = list.y + list.height + 70;
+        const goto = new Text("Menu:", {fontSize: 55});
+        goto.x = this.pissOMeter.x + 160;
+        goto.y = pissLabel.height + 60;
         this.board.addChild(goto)
 
-        const toilet = new TextButton("TOILET ->");
-        toilet.x = goto.x + 100;
-        toilet.y = goto.y + goto.height + 40;
+        const help = new TextButton("Help", {fontName: 'Permanent Marker', fontSize: 40});
+        help.x = goto.x + 60;
+        help.y = goto.y + goto.height + 30;
+        help.on('pointerdown', () => {
+            store.dispatch(toggleHelpMenu(true));
+        })
+        this.board.addChild(help);
+
+        const backyard = new TextButton("Backyard", {fontName: 'Permanent Marker', fontSize: 40});
+        backyard.x = help.x;
+        backyard.y = help.y + help.height + 30;
+        backyard.on('pointerdown', () => {
+            store.dispatch(loadScene(Backyard.name))
+        });
+        this.board.addChild(backyard);
+
+        const toilet = new TextButton("Toilet");
+        toilet.x = help.x;
+        toilet.y = backyard.y + backyard.height + 30;
         toilet.on('pointerdown', () => {
             store.dispatch(loadScene(Toilet.name))
         });
         this.board.addChild(toilet);
 
-        const backyard = new TextButton("<- BACKYARD", {fontName: 'Permanent Marker', fontSize: 40});
-        backyard.x = goto.x + 40;
-        backyard.y = toilet.y + toilet.height + 40;
-        backyard.on('pointerdown', () => {
-            store.dispatch(loadScene(Backyard.name))
-        });
-        this.board.addChild(backyard);
+        const graveyard = new TextButton("GRAVEYARD");
+        graveyard.x = toilet.x;
+        graveyard.y = toilet.y + toilet.height + 30;
+        graveyard.on('pointerdown', () => {
+
+        })
+        
 
         const spotify = new SpriteButton("spotify.png", sheet);
         spotify.on('pointerdown', () => {

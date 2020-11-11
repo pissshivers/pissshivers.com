@@ -1,4 +1,5 @@
 export type SceneStateType = {
     name: string,
-    track: number
+    track: number,
+    helpMenuOpen: boolean
 }
