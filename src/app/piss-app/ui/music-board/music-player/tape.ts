@@ -10,7 +10,7 @@ interface TrackDisplay {
     rotate: boolean
 }
 
-export class Tape extends SheetSprite {
+export class Cassette extends SheetSprite {
 
     sheet: PIXI.Spritesheet;
     leftSpool: PIXI.Sprite;
@@ -58,15 +58,15 @@ export class Tape extends SheetSprite {
             this.trackDisplay = this.getTrackDisplay(trackNameRender);
             this.trackName.text = this.trackDisplay.title;
         })
-
+        PIXI.Ticker.shared.add(this.tick, this);
         this.playlist.on('play', () => {
-            PIXI.Ticker.shared.add(this.tick, this);
+            
         })
 
         this.playlist.audio.addEventListener('pause', () => {
             this.t = 0;
             this.trackName.text = this.trackDisplay.title;
-            PIXI.Ticker.shared.remove(this.tick, this);                    
+            // PIXI.Ticker.shared.remove(this.tick, this);                    
         })
     }
 
@@ -122,9 +122,10 @@ export class Tape extends SheetSprite {
     }
 
     tick(time: number){
-        
-        this.updateTitleDisplay(time);
+        if (!this.playlist.paused){
+            this.updateTitleDisplay(time);
         this.leftSpool.rotation += 0.01 * time;
         this.rightSpool.rotation += 0.01 * time;
+        }
     }
 }
