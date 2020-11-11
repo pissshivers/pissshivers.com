@@ -4,7 +4,7 @@ import { GlowFilter } from '@pixi/filter-glow';
 import { Text } from './Text';
 
 interface TextButtonStyle {
-    fontName: string;
+    fontName?: string;
     fontSize?: number;
     align?: string;
     tint?: number;

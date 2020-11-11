@@ -6,7 +6,7 @@ import { Playlist } from '../../core/Playlist/Playlist';
 import { ITrack } from '../../core/Playlist/ITrack'
 import { Tracks } from './tracks';
 import { SheetSprite } from '../../core/UI/SheetSprite';
-import { TapedBoard } from '../taped-board';
+import { TapedBoard } from '../components/taped-board';
 
 export class MusicBoard extends TapedBoard {
 
