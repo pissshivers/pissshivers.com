@@ -5,8 +5,10 @@ import { SheetSprite, SpriteButton, Text, TextButton } from '../../core/UI';
 import { Beer } from './beer';
 import { PissOMeter } from './piss-o-meter';
 import { loadScene, toggleHelpMenu } from '../../../store/scene/actions';
-import { Toilet, Backyard } from '../../scenes';
+import { Toilet, Backyard, Graveyard } from '../../scenes';
 import { TapedBoard } from '../components/taped-board';
+import { MenuList } from './menu-list'
+import { Menu } from '../components/menu';
 
 
 export class NavBoard extends TapedBoard {
@@ -27,42 +29,15 @@ export class NavBoard extends TapedBoard {
         const pissLabel = new SheetSprite('piss-label.png', sheet);
         this.board.addChild(pissLabel);
 
-        const goto = new Text("Menu:", {fontSize: 55});
-        goto.x = this.pissOMeter.x + 160;
-        goto.y = pissLabel.height + 60;
-        this.board.addChild(goto)
+        const menu = new Text("Menu:", {fontSize: 55});
+        menu.x = this.pissOMeter.x + 160;
+        menu.y = pissLabel.height + 40;
+        this.board.addChild(menu);
 
-        const help = new TextButton("Help", {fontName: 'Permanent Marker', fontSize: 40});
-        help.x = goto.x + 60;
-        help.y = goto.y + goto.height + 30;
-        help.on('pointerdown', () => {
-            store.dispatch(toggleHelpMenu(true));
-        })
-        this.board.addChild(help);
-
-        const backyard = new TextButton("Backyard", {fontName: 'Permanent Marker', fontSize: 40});
-        backyard.x = help.x;
-        backyard.y = help.y + help.height + 30;
-        backyard.on('pointerdown', () => {
-            store.dispatch(loadScene(Backyard.name))
-        });
-        this.board.addChild(backyard);
-
-        const toilet = new TextButton("Toilet");
-        toilet.x = help.x;
-        toilet.y = backyard.y + backyard.height + 30;
-        toilet.on('pointerdown', () => {
-            store.dispatch(loadScene(Toilet.name))
-        });
-        this.board.addChild(toilet);
-
-        const graveyard = new TextButton("GRAVEYARD");
-        graveyard.x = toilet.x;
-        graveyard.y = toilet.y + toilet.height + 30;
-        graveyard.on('pointerdown', () => {
-
-        })
-        
+        const menuItems = new Menu(MenuList, sheet);
+        menuItems.x = menu.x + 40;
+        menuItems.y = menu.y + menu.height + 60;
+        this.board.addChild(menuItems);        
 
         const spotify = new SpriteButton("spotify.png", sheet);
         spotify.on('pointerdown', () => {
